@@ -197,7 +197,7 @@ function selectClass(classId) {
   document.getElementById('viewer-container').style.display = 'flex';
 
   // Set selected class badges
-  document.getElementById('selected-class-badge').textContent = `Class ${cls.id:02d}`;
+  document.getElementById('selected-class-badge').textContent = `Class ${String(cls.id).padStart(2, '0')}`;
   document.getElementById('class-folder-path').textContent = cls.folder_name ? `Class work wdd 2407/${cls.folder_name}` : 'ফোল্ডার পাওয়া যায়নি';
 
   // 1. Setup Video Files
@@ -238,9 +238,17 @@ function selectClass(classId) {
   });
 }
 
+// Helper to extract YouTube video ID from various URL formats
+function getYouTubeId(url) {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+}
+
 // Setup Video Player or Launcher
 function setupVideo(cls) {
   const nativePlayer = document.getElementById('native-video-player');
+  const youtubePlayer = document.getElementById('youtube-player');
   const systemOverlay = document.getElementById('system-player-launcher');
   const noVideoOverlay = document.getElementById('no-video-launcher');
   const playlistContainer = document.getElementById('class-video-files-list');
@@ -248,6 +256,8 @@ function setupVideo(cls) {
   // Reset states
   nativePlayer.style.display = 'none';
   nativePlayer.src = '';
+  youtubePlayer.style.display = 'none';
+  youtubePlayer.src = '';
   systemOverlay.style.display = 'none';
   noVideoOverlay.style.display = 'none';
   playlistContainer.innerHTML = '';
@@ -278,10 +288,18 @@ function setupVideo(cls) {
 // Play specific video file
 function playVideoFile(vf) {
   const nativePlayer = document.getElementById('native-video-player');
+  const youtubePlayer = document.getElementById('youtube-player');
   const systemOverlay = document.getElementById('system-player-launcher');
   
-  // Save global active video path for opening in system player
-  activeVideoPath = vf.path;
+  // Save global active video path for opening in system player (if not YouTube)
+  activeVideoPath = (vf.ext !== 'youtube') ? vf.path : null;
+
+  // Reset players
+  nativePlayer.style.display = 'none';
+  nativePlayer.src = '';
+  youtubePlayer.style.display = 'none';
+  youtubePlayer.src = '';
+  systemOverlay.style.display = 'none';
 
   // Highlight active button if playlist exists
   document.querySelectorAll('.video-file-btn').forEach(btn => {
@@ -292,9 +310,18 @@ function playVideoFile(vf) {
     }
   });
 
-  // Browser support check: Browser natively plays MP4 (and webm)
-  if (vf.ext === 'mp4' || vf.ext === 'webm') {
-    systemOverlay.style.display = 'none';
+  const isYoutube = vf.ext === 'youtube' || vf.path.includes('youtube.com') || vf.path.includes('youtu.be');
+
+  if (isYoutube) {
+    const ytId = getYouTubeId(vf.path);
+    if (ytId) {
+      youtubePlayer.style.display = 'block';
+      youtubePlayer.src = `https://www.youtube.com/embed/${ytId}`;
+    } else {
+      youtubePlayer.style.display = 'block';
+      youtubePlayer.src = vf.path;
+    }
+  } else if (vf.ext === 'mp4' || vf.ext === 'webm') {
     nativePlayer.style.display = 'block';
     
     // Serve via our local Express mount path /class-work/
@@ -305,10 +332,9 @@ function playVideoFile(vf) {
     nativePlayer.load();
   } else {
     // Show System Player Overlay
-    nativePlayer.style.display = 'none';
-    nativePlayer.src = '';
     systemOverlay.style.display = 'flex';
     document.getElementById('video-filename').textContent = vf.name;
+    activeVideoPath = vf.path;
   }
 }
 
