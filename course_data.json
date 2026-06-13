@@ -143,9 +143,9 @@
     ],
     "video_files": [
       {
-        "name": "class-05.wmv",
-        "path": "Class work wdd 2407/5. class 5/class-05.wmv",
-        "ext": "wmv"
+        "name": "Class 5 Lecture (YouTube)",
+        "path": "https://youtu.be/T9jT_ik1Xb4",
+        "ext": "youtube"
       }
     ],
     "code_files": [
@@ -176,9 +176,9 @@
     ],
     "video_files": [
       {
-        "name": "class-06.wmv",
-        "path": "Class work wdd 2407/6. class 6, Date 01 09 2024/class-06.wmv",
-        "ext": "wmv"
+        "name": "Class 6 Lecture (YouTube)",
+        "path": "https://youtu.be/3kY_JvYAreI",
+        "ext": "youtube"
       }
     ],
     "code_files": [
