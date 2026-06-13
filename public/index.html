@@ -38,133 +38,160 @@
       </div>
     </header>
 
-    <!-- Main Workspace Split Layout -->
-    <main class="app-workspace">
-      <!-- Left Sidebar: Class Selector -->
-      <aside class="class-sidebar">
-        <div class="sidebar-header">
-          <h3><i class="fa-solid fa-list-ul"></i> ক্লাস তালিকা</h3>
-          <div class="search-box">
+    <!-- Main Views Area -->
+    <main class="app-main-content">
+      
+      <!-- VIEW 1: HOME VIEW (Grid of 36 Classes) -->
+      <section id="home-view" class="view-section">
+        <div class="view-header">
+          <h2><i class="fa-solid fa-book-bookmark"></i> কোর্সের ক্লাসসমূহ (৩৬টি বিষয়)</h2>
+          <div class="search-bar-container">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="class-search" placeholder="ক্লাস বা টপিক খুঁজুন...">
+            <input type="text" id="class-search" placeholder="ক্লাস নম্বর, সিলেবাস বা টপিক খুঁজুন...">
           </div>
         </div>
-        <div class="class-list" id="class-list-container">
-          <!-- Class items will be dynamically injected here -->
+        
+        <div class="class-grid" id="class-grid-container">
+          <!-- 36 Class Cards will be injected dynamically here -->
           <div class="loading-state">
             <i class="fa-solid fa-spinner fa-spin"></i> ডেটা লোড হচ্ছে...
           </div>
         </div>
-      </aside>
+      </section>
 
-      <!-- Main Viewer Area -->
-      <section class="viewer-section" id="viewer-container" style="display: none;">
-        <!-- Left Side: Video Section -->
-        <div class="video-column">
-          <div class="panel-header">
-            <h3><i class="fa-solid fa-circle-play"></i> ভিডিও লেকচার</h3>
+      <!-- VIEW 2: DETAIL VIEW (Course Player Screen) -->
+      <section id="detail-view" class="view-section" style="display: none;">
+        <!-- Detail Header with Back Button -->
+        <div class="detail-header">
+          <button class="btn btn-secondary" id="btn-back-to-grid">
+            <i class="fa-solid fa-arrow-left"></i> ক্লাসের তালিকায় ফিরুন
+          </button>
+          <div class="detail-class-info">
             <span class="class-title-badge" id="selected-class-badge">Class 01</span>
-          </div>
-          <div class="video-body">
-            <!-- Video Player Block -->
-            <div class="video-player-wrapper" id="video-wrapper">
-              <!-- Native Video Player -->
-              <video id="native-video-player" controls style="display: none;">
-                Your browser does not support the video tag.
-              </video>
-
-              <!-- YouTube Video Player -->
-              <iframe id="youtube-player" style="display: none; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              
-              <!-- System Player Launcher (Placeholder when no direct browser support or preferred) -->
-              <div class="system-player-overlay" id="system-player-launcher">
-                <div class="overlay-icon"><i class="fa-regular fa-circle-play"></i></div>
-                <h4>ভিডিও প্লেয়ার</h4>
-                <p class="video-info" id="video-filename">class-01.wmv</p>
-                <p class="video-helper-text">
-                  ব্রাউজারে সরাসরি .wmv/.mkv ভিডিও সাপোর্ট করে না। নিচের বাটনে ক্লিক করে ভিডিওটি সরাসরি আপনার কম্পিউটারের প্লেয়ারে (যেমন: VLC) ওপেন করুন।
-                </p>
-                <button class="btn btn-primary" id="btn-open-system-player">
-                  <i class="fa-solid fa-expand"></i> কম্পিউটারের প্লেয়ারে দেখুন (VLC)
-                </button>
-              </div>
-
-              <!-- No Video Available -->
-              <div class="no-video-overlay" id="no-video-launcher" style="display: none;">
-                <div class="overlay-icon"><i class="fa-solid fa-video-slash"></i></div>
-                <h4>কোনো ভিডিও পাওয়া যায়নি</h4>
-                <p class="video-helper-text">
-                  এই ক্লাসের ফোল্ডারে কোনো রেকর্ড করা ভিডিও ফাইল পাওয়া যায়নি।
-                </p>
-              </div>
-            </div>
-
-            <!-- Video Playlist/Files Info -->
-            <div class="video-footer-info">
-              <div class="folder-path-display">
-                <i class="fa-solid fa-folder-open"></i> <strong>ফোল্ডার:</strong> 
-                <span id="class-folder-path">Class work wdd 2407/1. Class 1...</span>
-              </div>
-              <div class="video-files-list" id="class-video-files-list">
-                <!-- Video file buttons when multiple exist -->
-              </div>
-            </div>
+            <h2 id="selected-class-title">Wat is web design?</h2>
           </div>
         </div>
 
-        <!-- Right Side: Course & Summary Side-by-Side Split -->
-        <div class="content-column">
-          <!-- Split Headers -->
-          <div class="content-headers">
-            <div class="half-header left-half">
-              <h3><i class="fa-solid fa-book-open"></i> ক্লাসের মূল আলোচনা ও সোর্স কোড</h3>
+        <div class="app-workspace">
+          <!-- Left Sidebar: Quick switcher (visible on desktop only) -->
+          <aside class="class-sidebar">
+            <div class="sidebar-header">
+              <h3><i class="fa-solid fa-list-ul"></i> ক্লাস তালিকা</h3>
             </div>
-            <div class="half-header right-half">
-              <h3><i class="fa-solid fa-circle-info"></i> বাংলা সারসংক্ষেপ ও নোট</h3>
+            <div class="class-list" id="sidebar-class-list">
+              <!-- Quick list items -->
             </div>
-          </div>
+          </aside>
 
-          <!-- Split Body -->
-          <div class="content-split-body">
-            <!-- Left Half: Topics & Code Viewer -->
-            <div class="half-content left-half-content">
-              <div class="syllabus-block">
-                <h4>টপিক ও বিষয়বস্তু:</h4>
-                <ul class="topics-list" id="topics-list-container">
-                  <!-- Topics dynamically injected -->
-                </ul>
+          <!-- Viewer Workspace -->
+          <div class="viewer-workspace-container">
+            <!-- Left Side: Video Section -->
+            <div class="video-column">
+              <div class="panel-header">
+                <h3><i class="fa-solid fa-circle-play"></i> ভিডিও লেকচার</h3>
               </div>
+              <div class="video-body">
+                <!-- Video Player Block -->
+                <div class="video-player-wrapper" id="video-wrapper">
+                  <!-- Native Video Player -->
+                  <video id="native-video-player" controls style="display: none;">
+                    Your browser does not support the video tag.
+                  </video>
 
-              <div class="code-viewer-block">
-                <div class="code-header">
-                  <h4><i class="fa-solid fa-code"></i> ক্লাস প্র্যাকটিস কোড</h4>
-                  <select id="code-file-selector" class="file-select-dropdown">
-                    <option value="">-- কোনো কোড ফাইল নেই --</option>
-                  </select>
-                </div>
-                <div class="code-body-wrapper">
-                  <div class="no-code-selected" id="no-code-message">
-                    <i class="fa-solid fa-code-merge"></i>
-                    <p>ফাইল নির্বাচন করুন বা এই ক্লাসে কোনো কোড ফাইল নেই।</p>
+                  <!-- YouTube Video Player -->
+                  <iframe id="youtube-player" style="display: none; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  
+                  <!-- System Player Launcher (Placeholder when no direct browser support or preferred) -->
+                  <div class="system-player-overlay" id="system-player-launcher" style="display: none;">
+                    <div class="overlay-icon"><i class="fa-regular fa-circle-play"></i></div>
+                    <h4>ভিডিও প্লেয়ার</h4>
+                    <p class="video-info" id="video-filename">class-01.wmv</p>
+                    <p class="video-helper-text">
+                      ব্রাউজারে সরাসরি .wmv/.mkv ভিডিও সাপোর্ট করে না। নিচের বাটনে ক্লিক করে ভিডিওটি সরাসরি আপনার কম্পিউটারের প্লেয়ারে (যেমন: VLC) ওপেন করুন।
+                    </p>
+                    <button class="btn btn-primary" id="btn-open-system-player">
+                      <i class="fa-solid fa-expand"></i> কম্পিউটারের প্লেয়ারে দেখুন (VLC)
+                    </button>
                   </div>
-                  <pre class="code-display-pre" id="code-display" style="display: none;"><code class="language-html" id="code-content"></code></pre>
+
+                  <!-- No Video Available -->
+                  <div class="no-video-overlay" id="no-video-launcher" style="display: none;">
+                    <div class="overlay-icon"><i class="fa-solid fa-video-slash"></i></div>
+                    <h4>কোনো ভিডিও পাওয়া যায়নি</h4>
+                    <p class="video-helper-text">
+                      এই ক্লাসের ফোল্ডারে কোনো রেকর্ড করা ভিডিও ফাইল পাওয়া যায়নি।
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Video Playlist/Files Info -->
+                <div class="video-footer-info">
+                  <div class="folder-path-display">
+                    <i class="fa-solid fa-folder-open"></i> <strong>ফোল্ডার:</strong> 
+                    <span id="class-folder-path">Class work wdd 2407/1. Class 1...</span>
+                  </div>
+                  <div class="video-files-list" id="class-video-files-list">
+                    <!-- Video file buttons when multiple exist -->
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- Right Half: Summary & Notes (Bengali) -->
-            <div class="half-content right-half-content">
-              <div class="summary-card">
-                <h4><i class="fa-solid fa-pen-nib"></i> সারসংক্ষেপ (বাংলা):</h4>
-                <p class="summary-text-p" id="class-summary-text">
-                  এই ক্লাসে কী শেখানো হয়েছিল তার বিবরণ...
-                </p>
+            <!-- Right Side: Course & Summary Side-by-Side Split -->
+            <div class="content-column">
+              <!-- Split Headers -->
+              <div class="content-headers">
+                <div class="half-header left-half">
+                  <h3><i class="fa-solid fa-book-open"></i> ক্লাসের মূল আলোচনা ও সোর্স কোড</h3>
+                </div>
+                <div class="half-header right-half">
+                  <h3><i class="fa-solid fa-circle-info"></i> বাংলা সারসংক্ষেপ ও নোট</h3>
+                </div>
               </div>
 
-              <div class="cheatsheet-card">
-                <h4><i class="fa-solid fa-key"></i> মূল কি-ওয়ার্ড ও কোড সিনট্যাক্স:</h4>
-                <div class="cheatsheet-list" id="cheatsheet-container">
-                  <!-- Cheat items dynamic -->
+              <!-- Split Body -->
+              <div class="content-split-body">
+                <!-- Left Half: Topics & Code Viewer -->
+                <div class="half-content left-half-content">
+                  <div class="syllabus-block">
+                    <h4>টপিক ও বিষয়বস্তু:</h4>
+                    <ul class="topics-list" id="topics-list-container">
+                      <!-- Topics dynamically injected -->
+                    </ul>
+                  </div>
+
+                  <div class="code-viewer-block">
+                    <div class="code-header">
+                      <h4><i class="fa-solid fa-code"></i> ক্লাস প্র্যাকটিস কোড</h4>
+                      <select id="code-file-selector" class="file-select-dropdown">
+                        <option value="">-- কোনো কোড ফাইল নেই --</option>
+                      </select>
+                    </div>
+                    <div class="code-body-wrapper">
+                      <div class="no-code-selected" id="no-code-message">
+                        <i class="fa-solid fa-code-merge"></i>
+                        <p>ফাইল নির্বাচন করুন বা এই ক্লাসে কোনো কোড ফাইল নেই।</p>
+                      </div>
+                      <pre class="code-display-pre" id="code-display" style="display: none;"><code class="language-html" id="code-content"></code></pre>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right Half: Summary & Notes (Bengali) -->
+                <div class="half-content right-half-content">
+                  <div class="summary-card">
+                    <h4><i class="fa-solid fa-pen-nib"></i> সারসংক্ষেপ (বাংলা):</h4>
+                    <p class="summary-text-p" id="class-summary-text">
+                      এই ক্লাসে কী শেখানো হয়েছিল তার বিবরণ...
+                    </p>
+                  </div>
+
+                  <div class="cheatsheet-card">
+                    <h4><i class="fa-solid fa-key"></i> মূল কি-ওয়ার্ড ও কোড সিনট্যাক্স:</h4>
+                    <div class="cheatsheet-list" id="cheatsheet-container">
+                      <!-- Cheat items dynamic -->
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -172,31 +199,6 @@
         </div>
       </section>
 
-      <!-- Welcome Overlay before selection -->
-      <section class="welcome-section" id="welcome-container">
-        <div class="welcome-card">
-          <i class="fa-solid fa-graduation-cap welcome-logo"></i>
-          <h2>স্বাগতম! কোর্স ড্যাশবোর্ডে</h2>
-          <p>বাম পাশের তালিকা থেকে যেকোনো একটি ক্লাস নির্বাচন করুন। ক্লাস নির্বাচন করলে ভিডিও লেকচার, ক্লাসের প্র্যাকটিস কোড এবং সম্পূর্ণ বাংলা সারসংক্ষেপ পাশাপাশি দেখতে পাবেন।</p>
-          <div class="welcome-features">
-            <div class="feature-item">
-              <i class="fa-solid fa-play"></i>
-              <h4>ভিডিও লেকচার</h4>
-              <p>ব্রাউজার প্লেয়ার অথবা সরাসরি VLC প্লেয়ারে রান করার সুবিধা।</p>
-            </div>
-            <div class="feature-item">
-              <i class="fa-solid fa-code"></i>
-              <h4>কোড ভিউয়ার</h4>
-              <p>ক্লাসের ফোল্ডারের আসল কোড ফাইল রিড করুন ব্রাউজারেই।</p>
-            </div>
-            <div class="feature-item">
-              <i class="fa-solid fa-language"></i>
-              <h4>বাংলা সারসংক্ষেপ</h4>
-              <p>সহজ বাংলায় সম্পূর্ণ নোট ও চিটশিট রেডি করা আছে।</p>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   </div>
 
