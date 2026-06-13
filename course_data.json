@@ -107,19 +107,9 @@
     ],
     "video_files": [
       {
-        "name": "class-04 (1).wmv",
-        "path": "Class work wdd 2407/4. Class 4, Table, Date 21 08 2024/class-04 (1).wmv",
-        "ext": "wmv"
-      },
-      {
-        "name": "class-04 part-02.wmv",
-        "path": "Class work wdd 2407/4. Class 4, Table, Date 21 08 2024/class-04 part-02.wmv",
-        "ext": "wmv"
-      },
-      {
-        "name": "class-04.wmv",
-        "path": "Class work wdd 2407/4. Class 4, Table, Date 21 08 2024/class-04.wmv",
-        "ext": "wmv"
+        "name": "Class 4 Lecture (YouTube)",
+        "path": "https://youtu.be/ZxEI4fOr2tk",
+        "ext": "youtube"
       }
     ],
     "code_files": [
