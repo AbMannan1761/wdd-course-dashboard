@@ -45,9 +45,9 @@
     ],
     "video_files": [
       {
-        "name": "class-02.wmv",
-        "path": "Class work wdd 2407/2. Class 2, date/class-02.wmv",
-        "ext": "wmv"
+        "name": "Class 2 Lecture (YouTube)",
+        "path": "https://youtu.be/4mBi3ju-lhU",
+        "ext": "youtube"
       }
     ],
     "code_files": [],
@@ -72,19 +72,9 @@
     ],
     "video_files": [
       {
-        "name": "class-03 copy.wmv",
-        "path": "Class work wdd 2407/3. Class 3, Date/class-03 copy.wmv",
-        "ext": "wmv"
-      },
-      {
-        "name": "class-03.wmv",
-        "path": "Class work wdd 2407/3. Class 3, Date/class-03.wmv",
-        "ext": "wmv"
-      },
-      {
-        "name": "class3.mp4",
-        "path": "Class work wdd 2407/3. Class 3, Date/video/class3.mp4",
-        "ext": "mp4"
+        "name": "Class 3 Lecture (YouTube)",
+        "path": "https://youtu.be/L98okNBtRBw",
+        "ext": "youtube"
       }
     ],
     "code_files": [
