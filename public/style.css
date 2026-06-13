@@ -824,3 +824,141 @@ body {
   word-break: break-all;
   display: inline-block;
 }
+
+/* =========================================================================
+   Responsive Design & Media Queries
+   ========================================================================= */
+
+/* Medium Screens & Tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .video-column {
+    width: 45%;
+  }
+  .content-column {
+    width: 55%;
+  }
+  .content-split-body {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .half-content {
+    width: 100%;
+    height: auto;
+    overflow-y: visible;
+  }
+  .half-content.left-half-content {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .content-headers {
+    display: none; /* Hide side-by-side header title to save vertical space on tablet stack */
+  }
+}
+
+/* Mobile Devices (max-width: 768px) */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    height: auto;
+  }
+  
+  .app-container {
+    height: auto;
+    overflow-y: visible;
+  }
+  
+  .app-header {
+    height: auto;
+    flex-direction: column;
+    padding: 15px;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .header-stats {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .progress-bar-container {
+    width: 100%;
+    margin-top: 5px;
+  }
+  
+  .app-workspace {
+    flex-direction: column;
+    height: auto;
+    overflow-y: visible;
+  }
+  
+  /* Sidebar as a top collapsible panel on mobile */
+  .class-sidebar {
+    width: 100%;
+    height: 350px;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .class-list {
+    max-height: 280px;
+  }
+  
+  .viewer-section {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  /* Stacking the columns */
+  .video-column {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .content-column {
+    width: 100%;
+    height: auto;
+  }
+  
+  .content-headers {
+    display: none;
+  }
+  
+  .content-split-body {
+    flex-direction: column;
+    height: auto;
+    overflow-y: visible;
+  }
+  
+  .half-content {
+    width: 100%;
+    height: auto;
+    overflow-y: visible;
+    padding: 15px;
+  }
+  
+  .half-content.left-half-content {
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .welcome-section {
+    padding: 20px;
+  }
+  
+  .welcome-card {
+    padding: 24px;
+    border-radius: 12px;
+  }
+  
+  .welcome-features {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .feature-item {
+    padding: 14px;
+  }
+}
