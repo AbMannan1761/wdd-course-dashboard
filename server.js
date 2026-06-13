@@ -9,7 +9,7 @@ const PORT = 3000;
 // Path to the workspace root
 const workspaceDir = path.join(__dirname, '..');
 const classWorkDir = path.join(workspaceDir, 'Class work wdd 2407');
-const courseDataPath = path.join(workspaceDir, 'course_data.json');
+const courseDataPath = path.join(__dirname, 'course_data.json');
 
 // Serve static frontend assets from 'public' folder
 app.use(express.static(path.join(__dirname, 'public')));
