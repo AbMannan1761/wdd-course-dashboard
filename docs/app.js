@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Fetch compiled JSON from local server API
 function fetchCourseData() {
-  fetch('/api/course-data')
+  fetch('course_data.json')
     .then(res => res.json())
     .then(data => {
       courseData = data;

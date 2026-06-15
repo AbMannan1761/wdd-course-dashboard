@@ -11,8 +11,8 @@ const workspaceDir = path.join(__dirname, '..');
 const classWorkDir = path.join(workspaceDir, 'Class work wdd 2407');
 const courseDataPath = path.join(__dirname, 'course_data.json');
 
-// Serve static frontend assets from 'public' folder
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static frontend assets from 'docs' folder
+app.use(express.static(path.join(__dirname, 'docs')));
 
 // Serve the 'Class work wdd 2407' folder statically under '/class-work'
 // This lets the browser play MP4 files directly using URLs like: /class-work/10. class 10/class 10 assignment.mp4
