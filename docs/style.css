@@ -233,31 +233,32 @@ body {
   box-shadow: 0 0 12px rgba(136, 84, 255, 0.2);
 }
 
-/* Class Grid layout */
+/* Class Grid layout (re-styled to be a list) */
 .class-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* Class Card styling */
+/* Class Card styling (styled as list items) */
 .class-card {
   background: var(--bg-panel);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: 18px;
+  border-radius: 10px;
+  padding: 14px 24px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-  min-height: 200px;
   cursor: pointer;
   position: relative;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   box-shadow: var(--shadow-sm);
+  gap: 20px;
 }
 
 .class-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   border-color: var(--color-border-focus);
   box-shadow: var(--shadow-md);
   background: var(--bg-card-hover);
@@ -269,81 +270,71 @@ body {
 
 /* Card Badge */
 .card-status-badge {
-  font-size: 10.5px;
+  font-size: 11.5px;
   font-weight: 600;
   color: var(--color-text-muted);
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 12px;
+  gap: 6px;
+  margin-bottom: 0;
+  width: 100px;
+  flex-shrink: 0;
 }
 
 .card-status-badge.completed {
   color: var(--color-green);
 }
 
+/* Card Main content in row layout */
+.card-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  overflow: hidden;
+}
+
 .card-class-number {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--color-primary-hover);
   letter-spacing: 0.5px;
-  display: block;
-  margin-bottom: 4px;
+  margin-bottom: 0;
+  width: 70px;
+  flex-shrink: 0;
 }
 
 .card-class-title {
-  font-size: 14.5px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1.4;
   color: var(--color-text-main);
-  margin-bottom: 10px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  height: 40px;
-}
-
-.card-topics-preview {
-  list-style: none;
-  font-size: 11.5px;
-  color: var(--color-text-muted);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 16px;
-  height: 42px;
-  overflow: hidden;
-}
-
-.card-topics-preview li {
+  margin-bottom: 0;
+  flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-left: 12px;
-  position: relative;
 }
 
-.card-topics-preview li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: var(--color-primary);
+.card-topics-preview {
+  display: none; /* Hide topics preview in desktop list row to keep it clean */
 }
 
 .card-footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 12px;
-  margin-top: auto;
+  justify-content: flex-end;
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+  gap: 24px;
+  flex-shrink: 0;
 }
 
 .card-icons {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   color: rgba(255, 255, 255, 0.15);
   font-size: 14px;
 }
@@ -1043,8 +1034,44 @@ body {
   }
 
   .class-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
+  }
+
+  .class-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 18px;
+  }
+
+  .card-status-badge {
+    width: auto;
+  }
+
+  .card-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .card-class-number {
+    width: auto;
+  }
+
+  .card-class-title {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    width: 100%;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 10px;
   }
 
   /* DETAIL VIEW styling */
